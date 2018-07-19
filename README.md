@@ -1,4 +1,4 @@
-# PizzaPizePartz
+# Pizza Pize Partz
 Inventory Android App - Final Project for Udacity Android Basics Nanodegree
 
     Copyright (C) 2018  Tina Taylor
