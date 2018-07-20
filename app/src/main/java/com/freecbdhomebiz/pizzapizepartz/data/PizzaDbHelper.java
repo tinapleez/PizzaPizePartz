@@ -33,7 +33,7 @@ public class PizzaDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "pizzapartz.db";
 
     /**
-     * Database version. If you change the database schema (add_button columns,etc.), you must
+     * Database version. If you change the database schema (add columns,etc.), you must
      * increment the database version.
      */
     private static final int DATABASE_VERSION = 1;
@@ -48,7 +48,8 @@ public class PizzaDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * This method is called when the database is created for the first time.
+     * This method is called when the database is created for the first time (ex. when the app is
+     * installed.)
      */
     @Override
     public void onCreate(SQLiteDatabase db) {

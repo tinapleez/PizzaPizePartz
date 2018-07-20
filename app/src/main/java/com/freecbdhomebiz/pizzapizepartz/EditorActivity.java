@@ -98,7 +98,6 @@ public class EditorActivity extends AppCompatActivity {
 
         Log.i(LOG_TAG, "The insertIngredient string= " + values);
 
-
         // Insert a new row for pet in the database, returning the ID of that new row.
         long newRowId = db.insert(PizzaEntry.TABLE_NAME, null, values);
 
@@ -125,14 +124,13 @@ public class EditorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
-            // Respond to a click on the "Save" menu option
+            // User clicked the "Save" menu option
             case R.id.menu_editor_save:
-                // Save pet to database
+                // Save ingredient to database
                 insertIngredient();
-                // Exit activity
                 finish();
                 return true;
-            // More options to come
+            // More menu options to come
         }
         return super.onOptionsItemSelected(item);
     }

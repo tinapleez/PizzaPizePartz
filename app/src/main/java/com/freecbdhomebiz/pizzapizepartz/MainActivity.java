@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = "MainActivity ";
 
     private TextView infoView;
-    private Button addButton;
 
     /**
      * Database helper that will provide us access to the database
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         infoView = findViewById(R.id.textviewMA);
 
-        addButton = findViewById(R.id.add_button);
+        Button addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 PizzaEntry.COLUMN_SUPPLIER_PHONE
         };
 
-        // Perform SQL query to get a Cursor that contains specified rows from the pets
+        // Perform SQL query to get a Cursor that contains specified rows from the pizzapartz
         // table.
         Cursor cursor = db.query(PizzaContract.PizzaEntry.TABLE_NAME,
                                  projection,
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             int supplierColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER);
             int phoneColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_SUPPLIER_PHONE);
 
-            // Display the data in the same order as the header
             // Iterate through all the returned rows in the Cursor
             while (cursor.moveToNext()) {
                 int currentID = cursor.getInt(idColumnIndex);
@@ -141,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create the display of the values from each column of the current row of the
                 // cursor in the TextView
+                // Display the data in the same order as the header
                 infoView.append(("\n" + currentID + " - " +
                         currentName + " - " +
                         currentPrice + " - " +
@@ -175,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
         values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, dummyQuantity);
         values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, dummySupplier);
         values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, dummyPhone);
-
 
         // Insert a new row for Anchovies in the database, returning the ID of that new row.
         // The second argument is null so that the framework will not insert a row when there are
