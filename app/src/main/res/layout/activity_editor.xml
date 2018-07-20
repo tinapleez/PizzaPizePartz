@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018  Tina Taylor.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. https://www.gnu.org/licenses/gpl-3.0.en.html
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/layout_padding"
+    android:orientation="vertical"
+    tools:context="com.freecbdhomebiz.pizzapizepartz.EditorActivity">
+
+    <TextView
+        android:id="@+id/textviewE1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:text="@string/text_editor_textviewE1" />
+
+    <LinearLayout
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/text_editor_name"
+            style="@style/CategoryStyle" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:hint="@string/edittext_name_hint"
+            android:inputType="textCapWords"
+            style="@style/EditorFieldStyle"
+            tools:text="Enter Ingredient" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/text_editor_price"
+            style="@style/CategoryStyle" />
+
+        <EditText
+            android:id="@+id/edit_price"
+            android:hint="@string/edittext_price_hint"
+            android:inputType="number"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/text_editor_quantity"
+            style="@style/CategoryStyle" />
+
+        <!-- Quantity -->
+        <EditText
+            android:id="@+id/edit_quantity"
+            android:hint="@string/edittext_quantity_hint"
+            android:inputType="number"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <!-- Measurement category -->
+    <LinearLayout
+        android:id="@+id/supplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/text_editor_supplier"
+            style="@style/CategoryStyle" />
+
+        <!-- Quantity -->
+        <EditText
+            android:id="@+id/edit_supplier"
+            android:hint="@string/edittext_supplier_hint"
+            android:inputType="textCapWords"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/text_editor_phone"
+            style="@style/CategoryStyle" />
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:hint="@string/edittext_phone_hint"
+            android:inputType="number"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -8,4 +8,24 @@
 
 <resources>
     <string name="app_name">Pizza Pize Partz</string>
+    <string name="text_editor_textviewE1">Editor activity. Pizza for breakfast, lunch, and
+        dinner!</string>
+    <string name="text_main_textviewMA">Main activity. Pizza for breakfast, lunch and
+        dinner!</string>
+    <string name="menu_insert_dummy_data">Insert dummy data</string>
+    <string name="menu_editor_save">Save</string>
+    <string name="mainactivity_info_1">The pizzapartz table contains</string>
+    <string name="mainactivity_info2">ingredients.</string>
+    <string name="Anchovies">Anchovies</string>
+    <string name="YummyGoodStuff">Yummy Good Stuff</string>
+    <string name="text_editor_name">Ingredient</string>
+    <string name="edittext_name_hint">Ingredient</string>
+    <string name="edittext_price_hint">Price in dollars</string>
+    <string name="text_editor_price">Price</string>
+    <string name="edittext_quantity_hint">Quantity</string>
+    <string name="text_editor_supplier">Supplier</string>
+    <string name="edittext_supplier_hint">Supplier</string>
+    <string name="edittext_phone_hint">Phone number</string>
+    <string name="text_editor_phone">Phone</string>
+    <string name="text_editor_quantity">Quantity</string>
 </resources>

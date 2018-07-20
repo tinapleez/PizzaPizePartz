@@ -6,8 +6,15 @@
   ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. https://www.gnu.org/licenses/gpl-3.0.en.html
   -->
 
-<resources>
-    <dimen name="linear_layout_main_padding">16dp</dimen>
-    <dimen name="text_main_textviewA_padding">16dp</dimen>
-    <dimen name="layout_padding">16dp</dimen>
-</resources>
+<!-- Options menu for the EditorActivity -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditorActivity">
+
+    <item
+        android:id="@+id/menu_editor_save"
+        android:title="@string/menu_editor_save"
+        app:showAsAction="always" />
+
+</menu>
