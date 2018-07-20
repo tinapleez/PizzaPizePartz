@@ -25,7 +25,7 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
  */
 public class PizzaDbHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = "PizzaDbHelper ";
+    private static final String LOG_TAG = "PizzaDbHelper ";
 
     /**
      * Name of the database file
@@ -34,8 +34,7 @@ public class PizzaDbHelper extends SQLiteOpenHelper {
 
     /**
      * Database version. If you change the database schema (add_button columns,etc.), you must
-     * increment
-     * the database version.
+     * increment the database version.
      */
     private static final int DATABASE_VERSION = 1;
 
@@ -59,7 +58,7 @@ public class PizzaDbHelper extends SQLiteOpenHelper {
                 + PizzaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PizzaEntry.COLUMN_INGREDIENT_NAME + " TEXT NOT NULL, "
                 + PizzaEntry.COLUMN_INGREDIENT_PRICE + " INTEGER NOT NULL, "
-                + PizzaEntry.COLUMN_INGREDIENT_QUANTITY + " TEXT NOT NULL, "
+                + PizzaEntry.COLUMN_INGREDIENT_QUANTITY + " INTEGER NOT NULL, "
                 + PizzaEntry.COLUMN_INGREDIENT_SUPPLIER + " TEXT NOT NULL, "
                 + PizzaEntry.COLUMN_SUPPLIER_PHONE + " INTEGER NOT NULL)";
 

@@ -16,6 +16,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -28,6 +29,8 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaDbHelper;
  * Allows user to create a new ingredient or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = "EditorActivity ";
 
     /**
      * EditText field to enter the ingredient name
@@ -92,6 +95,9 @@ public class EditorActivity extends AppCompatActivity {
         values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, quantityString);
         values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, supplierString);
         values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, phoneString);
+
+        Log.i(LOG_TAG, "The insertIngredient string= " + values);
+
 
         // Insert a new row for pet in the database, returning the ID of that new row.
         long newRowId = db.insert(PizzaEntry.TABLE_NAME, null, values);

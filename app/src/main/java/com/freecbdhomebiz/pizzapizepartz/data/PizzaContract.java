@@ -64,7 +64,7 @@ public final class PizzaContract {
          * Supplier's phone number without dashes
          * Type: INTEGER
          */
-        public final static String COLUMN_SUPPLIER_PHONE = "Phone Number";
+        public final static String COLUMN_SUPPLIER_PHONE = "Phone_Number";
     }
 }
 

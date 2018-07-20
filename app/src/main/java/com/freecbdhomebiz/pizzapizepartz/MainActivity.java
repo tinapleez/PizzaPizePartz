@@ -18,11 +18,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract;
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
@@ -33,7 +35,10 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaDbHelper;
  */
 public class MainActivity extends AppCompatActivity {
 
-    Button addButton;
+    private static final String LOG_TAG = "MainActivity ";
+
+    private TextView infoView;
+    private Button addButton;
 
     /**
      * Database helper that will provide us access to the database
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        infoView = findViewById(R.id.textviewMA);
+
         addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayDatabaseInfo() {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-        PizzaDbHelper mDbHelper = new PizzaDbHelper(this);
+        PizzaDbHelper mDbHelper = new PizzaDbHelper(MainActivity.this);
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -96,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                                  null,
                                  null);
 
-        TextView infoView = findViewById(R.id.textviewMA);
 
         try {
             // Create a table header in the textView:
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                     PizzaEntry.COLUMN_INGREDIENT_NAME + " - " +
                                     PizzaEntry.COLUMN_INGREDIENT_PRICE + " - " +
                                     PizzaEntry.COLUMN_INGREDIENT_QUANTITY + " - " +
-                                    PizzaEntry.COLUMN_INGREDIENT_SUPPLIER +
+                                    PizzaEntry.COLUMN_INGREDIENT_SUPPLIER + " - " +
                                     PizzaEntry.COLUMN_SUPPLIER_PHONE + "\n");
 
             // Get the index of each column in the table
@@ -176,7 +182,21 @@ public class MainActivity extends AppCompatActivity {
         // no values.
         // The third argument is the ContentValues object containing the all info data for
         // Anchovies.
+        Log.i(LOG_TAG, "The insertdummy string= " + values);
+
+        // Insert a new row for pet in the database, returning the ID of that new row.
+
         long newRowId = db.insert(PizzaEntry.TABLE_NAME, null, values);
+
+        // Show a toast message depending on whether or not the insertion was successful
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, "Error with saving ingredient", Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast with the row ID.
+            Toast.makeText(this, "Ingredient saved with row id: " + newRowId, Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 
     @Override
