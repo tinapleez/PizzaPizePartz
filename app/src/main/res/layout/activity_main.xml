@@ -6,11 +6,12 @@
   ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. https://www.gnu.org/licenses/gpl-3.0.en.html
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/linear_layout_main_padding"
+    android:background="@color/background"
     tools:context="com.freecbdhomebiz.pizzapizepartz.MainActivity">
 
     <TextView
@@ -20,4 +21,19 @@
         android:text="@string/text_main_textviewMA"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/add_button"
+        android:text="Add Stuff"
+        android:textColor="#060012"
+        android:textSize="16sp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:background="@drawable/add_button"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

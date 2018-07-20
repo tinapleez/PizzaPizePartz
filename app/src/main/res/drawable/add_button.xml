@@ -6,13 +6,21 @@
   ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. https://www.gnu.org/licenses/gpl-3.0.en.html
   -->
 
-<resources>
-    <color name="colorPrimary">#FCA077</color>
-    <color name="colorPrimaryDark">#FB783D</color>
-    <color name="colorAccent">#FC7791</color>
-    <color name="colorText">#060012</color>
-    <color name="actionbar_text">#060012</color>
-    <color name="background">#FEDEC2</color>
-    <color name="background2">#FEE8D5</color>
-
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="61dp" />
+    <gradient
+        android:gradientRadius="200"
+        android:centerX="50%"
+        android:centerY="50%"
+        android:centerColor="#FB783D"
+        android:startColor="#E8E8E8"
+        android:endColor="#060012"
+        android:type="radial" />
+    <size
+        android:width="100dp"
+        android:height="40dp" />
+    <stroke
+        android:width="1dp"
+        android:color="#878787" />
+</shape>

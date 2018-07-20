@@ -12,6 +12,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding"
     android:orientation="vertical"
+    android:background="@color/background2"
     tools:context="com.freecbdhomebiz.pizzapizepartz.EditorActivity">
 
     <TextView
@@ -30,13 +31,14 @@
         <!-- Label -->
         <TextView
             android:text="@string/text_editor_name"
-            style="@style/CategoryStyle" />
+            style="@style/TextViewStyle" />
 
         <EditText
             android:id="@+id/edit_name"
+            android:maxLength="20"
             android:hint="@string/edittext_name_hint"
             android:inputType="textCapWords"
-            style="@style/EditorFieldStyle"
+            style="@style/EditTextStyle"
             tools:text="Enter Ingredient" />
     </LinearLayout>
 
@@ -49,13 +51,14 @@
         <!-- Label -->
         <TextView
             android:text="@string/text_editor_price"
-            style="@style/CategoryStyle" />
+            style="@style/TextViewStyle" />
 
         <EditText
             android:id="@+id/edit_price"
+            android:maxLength="3"
             android:hint="@string/edittext_price_hint"
             android:inputType="number"
-            style="@style/EditorFieldStyle" />
+            style="@style/EditTextStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,14 +70,15 @@
         <!-- Label -->
         <TextView
             android:text="@string/text_editor_quantity"
-            style="@style/CategoryStyle" />
+            style="@style/TextViewStyle" />
 
         <!-- Quantity -->
         <EditText
             android:id="@+id/edit_quantity"
+            android:maxLength="3"
             android:hint="@string/edittext_quantity_hint"
             android:inputType="number"
-            style="@style/EditorFieldStyle" />
+            style="@style/EditTextStyle" />
     </LinearLayout>
 
     <!-- Measurement category -->
@@ -87,14 +91,15 @@
         <!-- Label -->
         <TextView
             android:text="@string/text_editor_supplier"
-            style="@style/CategoryStyle" />
+            style="@style/TextViewStyle" />
 
         <!-- Quantity -->
         <EditText
             android:id="@+id/edit_supplier"
+            android:maxLength="30"
             android:hint="@string/edittext_supplier_hint"
             android:inputType="textCapWords"
-            style="@style/EditorFieldStyle" />
+            style="@style/EditTextStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,13 +111,14 @@
         <!-- Label -->
         <TextView
             android:text="@string/text_editor_phone"
-            style="@style/CategoryStyle" />
+            style="@style/TextViewStyle" />
 
         <EditText
             android:id="@+id/edit_phone"
+            android:maxLength="7"
             android:hint="@string/edittext_phone_hint"
             android:inputType="number"
-            style="@style/EditorFieldStyle" />
+            style="@style/EditTextStyle" />
     </LinearLayout>
 
 </LinearLayout>
