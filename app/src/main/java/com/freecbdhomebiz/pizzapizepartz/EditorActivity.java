@@ -139,11 +139,12 @@ public class EditorActivity extends AppCompatActivity {
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error saving ingredient", Toast
+            Toast.makeText(this, R.string.Toast_Editor_Activity_Error_Saving, Toast
                     .LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(getApplicationContext(), "Ingredient saved with row id: " + newRowId,
+            Toast.makeText(getApplicationContext(), getString(R.string.Toast_EditorActivity_newRowId) +
+                                   newRowId,
                            Toast.LENGTH_SHORT)
                     .show();
         }

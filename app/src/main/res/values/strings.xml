@@ -31,4 +31,6 @@
     <string name="dummyPrice">6</string>
     <string name="dummyQuantity">13</string>
     <string name="dummyPhone">123456</string>
+    <string name="Toast_Editor_Activity_Error_Saving">Error saving ingredient</string>
+    <string name="Toast_EditorActivity_newRowId">Ingredient was saved with row id:</string>
 </resources>

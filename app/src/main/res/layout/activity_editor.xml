@@ -17,17 +17,19 @@
     tools:context="com.freecbdhomebiz.pizzapizepartz.EditorActivity">
 
     <TextView
-        android:id="@+id/textviewE1"
+        android:id="@+id/entry_form_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_marginBottom="@dimen/text_entry_form_label"
         android:text="@string/text_editor_textviewE1" />
 
     <LinearLayout
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom">
 
         <!-- Label -->
         <TextView
@@ -47,7 +49,8 @@
         android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom">
 
         <!-- Label -->
         <TextView
@@ -66,7 +69,8 @@
         android:id="@+id/quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom">
 
         <!-- Label -->
         <TextView
@@ -87,7 +91,8 @@
         android:id="@+id/supplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom">
 
         <!-- Label -->
         <TextView
@@ -107,7 +112,8 @@
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom">
 
         <!-- Label -->
         <TextView

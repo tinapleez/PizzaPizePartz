@@ -48,7 +48,7 @@
         <item name="android:tint">@color/actionbar_text</item>
     </style>
 
-    <!-- Style for a category in the editor -->
+    <!-- Style for a TextView in the editor -->
     <style name="TextViewStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -63,6 +63,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:layout_marginLeft">8dp</item>
     </style>
 
 </resources>

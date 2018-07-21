@@ -35,10 +35,7 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaDbHelper;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = "MainActivity ";
-
     private TextView infoView;
-
 
     /**
      * Database helper that will provide us access to the database
