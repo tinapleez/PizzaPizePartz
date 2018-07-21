@@ -16,7 +16,7 @@
     <string name="mainactivity_info_1">The pizzapartz table contains \ </string>
     <string name="mainactivity_info2">\ rows of ingredients. \n\n</string>
     <string name="Anchovies">Anchovies</string>
-    <string name="YummyGoodStuff">Yummy Good Stuff</string>
+    <string name="dummySupplier">Yummy Good Stuff</string>
     <string name="text_editor_name">Ingredient</string>
     <string name="edittext_name_hint">Ingredient</string>
     <string name="edittext_price_hint">Price in dollars</string>
@@ -28,4 +28,7 @@
     <string name="text_editor_phone">Phone</string>
     <string name="text_editor_quantity">Quantity</string>
     <string name="button_add_stuff">Add Stuff</string>
+    <string name="dummyPrice">6</string>
+    <string name="dummyQuantity">13</string>
+    <string name="dummyPhone">123456</string>
 </resources>

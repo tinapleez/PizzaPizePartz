@@ -13,6 +13,7 @@
 package com.freecbdhomebiz.pizzapizepartz;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,11 @@ public class EditorActivity extends AppCompatActivity {
      */
     private EditText mPhoneEditText;
 
+    /**
+     * Becomes true when MainActivity menu option is "Insert dummy data" is clicked
+     */
+    private boolean insertTheDummy = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +74,46 @@ public class EditorActivity extends AppCompatActivity {
         mQuantityEditText = findViewById(R.id.edit_quantity);
         mSupplierEditText = findViewById(R.id.edit_supplier);
         mPhoneEditText = findViewById(R.id.edit_phone);
+
+        // Passes boolean (true) from MainActivity menu option clicked, and starts the write data
+        // to database process
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            insertTheDummy = extras.getBoolean("insertDummyData");
+            insertIngredient();
+        }
     }
 
     /**
-     * Get user input from editor and save new ingredient into database.
+     * Get user input from editor, OR, get dummy data, and save new ingredient into database.
      */
     private void insertIngredient() {
-        // Read from user input fields
-        String nameString = mNameEditText.getText().toString().trim();
-        String priceString = mPriceEditText.getText().toString().trim();
-        String quantityString = mQuantityEditText.getText().toString().trim();
-        String supplierString = mSupplierEditText.getText().toString().trim();
-        String phoneString = mPhoneEditText.getText().toString().trim();
+        String nameString;
+        String priceString;
+        String quantityString;
+        String supplierString;
+        String phoneString;
 
+        // If the Intent from the MainActivity to insert dummy data was not called then get
+        // the data from the EdtText fields
+        if (!insertTheDummy) {
+            // Read from user input fields
+            nameString = mNameEditText.getText().toString().trim();
+            priceString = mPriceEditText.getText().toString().trim();
+            quantityString = mQuantityEditText.getText().toString().trim();
+            supplierString = mSupplierEditText.getText().toString().trim();
+            phoneString = mPhoneEditText.getText().toString().trim();
+        } else {
+            //Use dummy data from receiving Intent with Extras from the menu
+            // switch in MainActivity
+            nameString = getString(R.string.Anchovies);
+            priceString = getString(R.string.dummyPrice);
+            quantityString = getString(R.string.dummyQuantity);
+            supplierString = getString(R.string.dummySupplier);
+            phoneString = getString(R.string.dummyPhone);
+            // Reset the insert dummy data boolean
+            insertTheDummy = false;
+        }
         // Create database helper
         PizzaDbHelper mDbHelper = new PizzaDbHelper(this);
 
@@ -88,7 +121,7 @@ public class EditorActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where column names are the keys,
-        // and pet attributes from the editor are the values.
+        // and ingredient attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(PizzaEntry.COLUMN_INGREDIENT_NAME, nameString);
         values.put(PizzaEntry.COLUMN_INGREDIENT_PRICE, priceString);
@@ -98,37 +131,37 @@ public class EditorActivity extends AppCompatActivity {
 
         Log.i(LOG_TAG, "The insertIngredient string= " + values);
 
-        // Insert a new row for pet in the database, returning the ID of that new row.
+        // Insert a new row for an ingredient in the database, returning the ID of that new row.
         long newRowId = db.insert(PizzaEntry.TABLE_NAME, null, values);
 
         // Show a toast message depending on whether or not the insertion was successful
         if (newRowId == -1) {
             // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error with saving ingredient", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error saving ingredient", Toast
+                    .LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Ingredient saved with row id: " + newRowId, Toast.LENGTH_SHORT)
+            Toast.makeText(getApplicationContext(), "Ingredient saved with row id: " + newRowId,
+                           Toast.LENGTH_SHORT)
                     .show();
         }
+        Intent i = new Intent(EditorActivity.this, MainActivity.class);
+        startActivity(i);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_editor.xml file.
-        // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_editor, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // User clicked the "Save" menu option
             case R.id.menu_editor_save:
-                // Save ingredient to database
+                // Write new ingredient to database
                 insertIngredient();
-                finish();
                 return true;
             // More menu options to come
         }

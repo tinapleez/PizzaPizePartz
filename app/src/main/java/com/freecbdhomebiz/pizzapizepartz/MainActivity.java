@@ -12,19 +12,16 @@
 
 package com.freecbdhomebiz.pizzapizepartz;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract;
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
@@ -39,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView infoView;
 
+
     /**
      * Database helper that will provide us access to the database
      */
-    private PizzaDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         displayDatabaseInfo();
-
-        // To access the database, create an instance of PizzaDbHelper
-        mDbHelper = new PizzaDbHelper(this);
     }
 
     @Override
@@ -69,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         displayDatabaseInfo();
     }
-
 
     /**
      * Helper method to display info to the main screen
@@ -152,51 +145,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Helper method to insert dummy ingredient data into the database for testing/debugging.
-     */
-    private void insertDummy() {
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        // Declare dummy data
-        String dummyName = getString(R.string.Anchovies);
-        int dummyPrice = 6;
-        int dummyQuantity = 13;
-        String dummySupplier = getString(R.string.YummyGoodStuff);
-        int dummyPhone = 9876543;
-
-        // Create a ContentValues object where column names are the keys,
-        // and dummy data are the values.
-        ContentValues values = new ContentValues();
-        values.put(PizzaEntry.COLUMN_INGREDIENT_NAME, dummyName);
-        values.put(PizzaEntry.COLUMN_INGREDIENT_PRICE, dummyPrice);
-        values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, dummyQuantity);
-        values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, dummySupplier);
-        values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, dummyPhone);
-
-        // Insert a new row for Anchovies in the database, returning the ID of that new row.
-        // The second argument is null so that the framework will not insert a row when there are
-        // no values.
-        // The third argument is the ContentValues object containing the all info data for
-        // Anchovies.
-        Log.i(LOG_TAG, "The insertdummy string= " + values);
-
-        // Insert a new row for pet in the database, returning the ID of that new row.
-
-        long newRowId = db.insert(PizzaEntry.TABLE_NAME, null, values);
-
-        // Show a toast message depending on whether or not the insertion was successful
-        if (newRowId == -1) {
-            // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error with saving ingredient", Toast.LENGTH_SHORT).show();
-        } else {
-            // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Ingredient saved with row id: " + newRowId, Toast.LENGTH_SHORT)
-                    .show();
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_main.xml file.
@@ -210,8 +158,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.menu_insert_dummy_data:
-                insertDummy();
-                displayDatabaseInfo();
+                Intent i = new Intent(MainActivity.this, EditorActivity.class);
+                i.putExtra("insertDummyData", true);
+                startActivity(i);
                 return true;
             // Other options/cases can be added to the menu_main here
         }
