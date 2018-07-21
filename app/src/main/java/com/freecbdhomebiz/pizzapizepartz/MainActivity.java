@@ -10,6 +10,9 @@
   * the GNU General Public License for more details. https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
+//Parts of this app are taken from my Udacity Android Basics Nanodegree Pets classsroom practice
+// app which is copyrighted to Udacity.
+
 package com.freecbdhomebiz.pizzapizepartz;
 
 import android.content.Intent;
