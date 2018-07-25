@@ -27,6 +27,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <provider
+            android:name=".data.PizzaProvider"
+            android:authorities="com.freecbdhomebiz.pizzapizepartz"
+            android:exported="false" />
     </application>
 
 </manifest>

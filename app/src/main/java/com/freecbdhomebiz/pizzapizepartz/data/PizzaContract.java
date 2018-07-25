@@ -14,10 +14,18 @@
 
 package com.freecbdhomebiz.pizzapizepartz.data;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 
 public final class PizzaContract {
+
+    public static final String CONTENT_AUTHORITY = "com.freecbdhomebiz.pizzapizepartz";
+
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+
+    public static final String PATH_PIZZA = "pizzapizepartz";
 
     private PizzaContract() {
     }
@@ -26,6 +34,20 @@ public final class PizzaContract {
      * Constant variables for the database entries
      */
     public static final class PizzaEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_PIZZA);
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a list of ingredients.
+         */
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PIZZA;
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a single ingredient.
+         */
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PIZZA;
 
         /**
          * Name of database table for the pizza ingredients

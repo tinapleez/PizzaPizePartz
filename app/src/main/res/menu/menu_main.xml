@@ -17,4 +17,9 @@
         android:title="@string/menu_insert_dummy_data"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_delete_all_entries"
+        android:title="Delete all ingredients"
+        app:showAsAction="never" />
+
 </menu>

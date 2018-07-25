@@ -33,4 +33,10 @@
     <string name="dummyPhone">123456</string>
     <string name="Toast_Editor_Activity_Error_Saving">Error saving ingredient</string>
     <string name="Toast_EditorActivity_newRowId">Ingredient was saved with row id:</string>
+
+    <string name="unknown_breed">unknown</string>
+
+    <string name="empty_view_subtitle_text">empty subtitle</string>
+    <string name="empty_view_title_text">empty title</string>
+
 </resources>

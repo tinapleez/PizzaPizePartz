@@ -60,11 +60,6 @@ public class EditorActivity extends AppCompatActivity {
      */
     private EditText mPhoneEditText;
 
-    /**
-     * Becomes true when MainActivity menu option is "Insert dummy data" is clicked
-     */
-    private boolean insertTheDummy = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,18 +71,10 @@ public class EditorActivity extends AppCompatActivity {
         mQuantityEditText = findViewById(R.id.edit_quantity);
         mSupplierEditText = findViewById(R.id.edit_supplier);
         mPhoneEditText = findViewById(R.id.edit_phone);
-
-        // Passes boolean (true) from MainActivity menu option clicked, and starts the write data
-        // to database process
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            insertTheDummy = extras.getBoolean("insertDummyData");
-            insertIngredient();
-        }
     }
 
     /**
-     * Get user input from editor, OR, get dummy data, and save new ingredient into database.
+     * Get user input from editor and save new ingredient into database.
      */
     private void insertIngredient() {
         String nameString;
@@ -96,26 +83,13 @@ public class EditorActivity extends AppCompatActivity {
         String supplierString;
         String phoneString;
 
-        // If the Intent from the MainActivity to insert dummy data was not called then get
-        // the data from the EdtText fields
-        if (!insertTheDummy) {
             // Read from user input fields
             nameString = mNameEditText.getText().toString().trim();
             priceString = mPriceEditText.getText().toString().trim();
             quantityString = mQuantityEditText.getText().toString().trim();
             supplierString = mSupplierEditText.getText().toString().trim();
             phoneString = mPhoneEditText.getText().toString().trim();
-        } else {
-            //Use dummy data from receiving Intent with Extras from the menu
-            // switch in MainActivity
-            nameString = getString(R.string.Anchovies);
-            priceString = getString(R.string.dummyPrice);
-            quantityString = getString(R.string.dummyQuantity);
-            supplierString = getString(R.string.dummySupplier);
-            phoneString = getString(R.string.dummyPhone);
-            // Reset the insert dummy data boolean
-            insertTheDummy = false;
-        }
+
         // Create database helper
         PizzaDbHelper mDbHelper = new PizzaDbHelper(this);
 

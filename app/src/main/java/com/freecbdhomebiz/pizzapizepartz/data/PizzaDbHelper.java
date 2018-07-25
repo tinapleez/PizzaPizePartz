@@ -60,7 +60,7 @@ public class PizzaDbHelper extends SQLiteOpenHelper {
                 .TABLE_NAME + " ("
                 + PizzaEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PizzaEntry.COLUMN_INGREDIENT_NAME + " TEXT NOT NULL, "
-                + PizzaEntry.COLUMN_INGREDIENT_PRICE + " REAL NOT NULL, "
+                + PizzaEntry.COLUMN_INGREDIENT_PRICE + " INTEGER NOT NULL, "
                 + PizzaEntry.COLUMN_INGREDIENT_QUANTITY + " INTEGER NOT NULL, "
                 + PizzaEntry.COLUMN_INGREDIENT_SUPPLIER + " TEXT NOT NULL, "
                 + PizzaEntry.COLUMN_SUPPLIER_PHONE + " INTEGER NOT NULL)";

@@ -15,37 +15,47 @@
 
 package com.freecbdhomebiz.pizzapizepartz;
 
+import android.app.LoaderManager;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
 
-import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract;
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
-import com.freecbdhomebiz.pizzapizepartz.data.PizzaDbHelper;
 
 /**
  * Displays list of pizza ingredients that were entered and stored in the app database.
  */
-public class MainActivity extends AppCompatActivity {
-
-    private TextView infoView;
+public class MainActivity extends AppCompatActivity implements LoaderManager
+        .LoaderCallbacks<Cursor> {
 
     /**
-     * Database helper that will provide us access to the database
+     * Identifier for the pizza data loader
      */
+    private static final int PIZZA_LOADER = 0;
+
+    /**
+     * Adapter for the ListView
+     */
+    PizzaCursorAdapter mCursorAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        infoView = findViewById(R.id.textviewMA);
 
         Button addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -55,95 +65,83 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        displayDatabaseInfo();
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        displayDatabaseInfo();
+        // Find the ListView which will be populated with the pizza ingredient data
+        ListView pizzaListView = findViewById(R.id.list);
+
+        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
+        View emptyView = findViewById(R.id.empty_view);
+        pizzaListView.setEmptyView(emptyView);
+
+        // Setup an Adapter to create a list item for each row of ingredient data in the Cursor.
+        // There is no ingredient data yet (until the loader finishes) so pass in null for the
+        // Cursor.
+        mCursorAdapter = new
+
+                PizzaCursorAdapter(this, null);
+        pizzaListView.setAdapter(mCursorAdapter);
+
+        // Setup the item click listener
+        pizzaListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Create new intent to go to {@link EditorActivity}
+                Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+
+                // Form the content URI that represents the specific pet that was clicked on,
+                // by appending the "id" (passed as input to this method) onto the
+                // {@link PizzaEntry#CONTENT_URI}.
+                // For example, the URI would be "content://com.freecbdhomebiz
+                // .pizzapizepartz/pizzas/2"
+                // if the ingredient with ID 2 was clicked on.
+                Uri currentPizzaUri = ContentUris.withAppendedId(PizzaEntry.CONTENT_URI, id);
+
+                // Set the URI on the data field of the intent
+                intent.setData(currentPizzaUri);
+
+                // Launch the {@link EditorActivity} to display the data for the current ingredient.
+                startActivity(intent);
+            }
+        });
+
+        // Kick off the loader
+        getLoaderManager().
+
+                initLoader(PIZZA_LOADER, null, this);
+
     }
 
     /**
-     * Helper method to display info to the main screen
+     * Helper method to insert hardcoded ingredient data into the database. For debugging purposes
+     * only.
      */
-    private void displayDatabaseInfo() {
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        PizzaDbHelper mDbHelper = new PizzaDbHelper(MainActivity.this);
+    private void insertPizza() {
+        // Create a ContentValues object where column names are the keys,
+        // and Anchovies attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(PizzaEntry.COLUMN_INGREDIENT_NAME, "Anchovies");
+        values.put(PizzaEntry.COLUMN_INGREDIENT_PRICE, 5);
+        values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, 1);
+        values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, "Supplier");
+        values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, 555 - 555 - 5555);
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        //Define projection of columns to use in query
-        String[] projection = {
-                PizzaEntry._ID,
-                PizzaEntry.COLUMN_INGREDIENT_NAME,
-                PizzaEntry.COLUMN_INGREDIENT_PRICE,
-                PizzaEntry.COLUMN_INGREDIENT_QUANTITY,
-                PizzaEntry.COLUMN_INGREDIENT_SUPPLIER,
-                PizzaEntry.COLUMN_SUPPLIER_PHONE
-        };
-
-        // Perform SQL query to get a Cursor that contains specified rows from the pizzapartz
-        // table.
-        Cursor cursor = db.query(PizzaContract.PizzaEntry.TABLE_NAME,
-                                 projection,
-                                 null,
-                                 null,
-                                 null,
-                                 null,
-                                 null);
-
-
-        try {
-            // Create a table header in the textView:
-            // _id - Name - Price - Quantity - Supplier - Phone Number
-            // The pizzapartz table contains cursor.getCount (number of rows) of ingredients.
-
-            //Build a message to show the number of ingredients (rows) in the table
-            String info = getString(R.string.mainactivity_info_1) + cursor.getCount() + getString
-                    (R.string.mainactivity_info2);
-            infoView.setText(info);
-
-            infoView.append(PizzaEntry._ID + " - " +
-                                    PizzaEntry.COLUMN_INGREDIENT_NAME + " - " +
-                                    PizzaEntry.COLUMN_INGREDIENT_PRICE + " - " +
-                                    PizzaEntry.COLUMN_INGREDIENT_QUANTITY + " - " +
-                                    PizzaEntry.COLUMN_INGREDIENT_SUPPLIER + " - " +
-                                    PizzaEntry.COLUMN_SUPPLIER_PHONE + "\n");
-
-            // Get the index of each column in the table
-            int idColumnIndex = cursor.getColumnIndex(PizzaEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_NAME);
-            int priceColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_PRICE);
-            int quantityColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_QUANTITY);
-            int supplierColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER);
-            int phoneColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_SUPPLIER_PHONE);
-
-            // Iterate through all the returned rows in the Cursor
-            while (cursor.moveToNext()) {
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                int currentPrice = cursor.getInt(priceColumnIndex);
-                int currentQuantity = cursor.getInt(quantityColumnIndex);
-                String currentSupplier = cursor.getString(supplierColumnIndex);
-                int currentPhone = cursor.getInt(phoneColumnIndex);
-
-                // Create the display of the values from each column of the current row of the
-                // cursor in the TextView
-                // Display the data in the same order as the header
-                infoView.append(("\n" + currentID + " - " +
-                        currentName + " - " +
-                        currentPrice + " - " +
-                        currentQuantity + " - " +
-                        currentSupplier + " - " +
-                        currentPhone));
-            }
-        } finally {
-            cursor.close();
-        }
+        // Insert a new row for Anchovies into the provider using the ContentResolver.
+        // Use the {@link PizzaEntry#CONTENT_URI} to indicate that we want to insert
+        // into the pizzapartz database table.
+        // Receive the new content URI that will allow us to access Anchovies data in the future.
+        Uri newUri = getContentResolver().insert(PizzaEntry.CONTENT_URI, values);
     }
+
+    /**
+     * Helper method to delete all ingredients in the database.
+     */
+    private void deleteAllPizza() {
+        int rowsDeleted = getContentResolver().delete(PizzaEntry.CONTENT_URI, null, null);
+        Log.v("MainActivity", rowsDeleted + " rows deleted from pizzapartz database");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,12 +156,44 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.menu_insert_dummy_data:
-                Intent i = new Intent(MainActivity.this, EditorActivity.class);
-                i.putExtra("insertDummyData", true);
-                startActivity(i);
+                insertPizza();
                 return true;
-            // Other options/cases can be added to the menu_main here
+            // Respond to a click on the "Delete all entries" menu option
+            case R.id.action_delete_all_entries:
+                deleteAllPizza();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        // Define a projection that specifies the columns from the table we care about.
+        String[] projection = {
+                PizzaEntry._ID,
+                PizzaEntry.COLUMN_INGREDIENT_NAME,
+                PizzaEntry.COLUMN_INGREDIENT_PRICE};
+
+        // This loader will execute the ContentProvider's query method on a background thread
+        return new CursorLoader(this,   // Parent activity context
+                                PizzaEntry.CONTENT_URI,   // Provider content URI to query
+                                projection,             // Columns to include in the resulting
+                                // Cursor
+                                null,                   // No selection clause
+                                null,                   // No selection arguments
+                                null);                  // Default sort order
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // Update {@link PizzaCursorAdapter} with this new cursor containing updated pet data
+        mCursorAdapter.swapCursor(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        // Callback called when the data needs to be deleted
+        mCursorAdapter.swapCursor(null);
     }
 }
