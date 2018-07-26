@@ -13,6 +13,11 @@
         dinner!</string>
     <string name="menu_insert_dummy_data">Insert dummy data</string>
     <string name="menu_editor_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="editor_activity_title_new_ingredient">Add ingredient</string>
+    <string name="editor_activity_title_edit_ingredient">Edit ingredient</string>
+    <string name="editor_activity_update">Update the ingredient here</string>
+
     <string name="mainactivity_info_1">The pizzapartz table contains \ </string>
     <string name="mainactivity_info2">\ rows of ingredients. \n\n</string>
     <string name="Anchovies">Anchovies</string>
@@ -32,11 +37,28 @@
     <string name="dummyQuantity">13</string>
     <string name="dummyPhone">123456</string>
     <string name="Toast_Editor_Activity_Error_Saving">Error saving ingredient</string>
-    <string name="Toast_EditorActivity_newRowId">Ingredient was saved with row id:</string>
+    <string name="Toast_EditorActivity_Save_Success">Ingredient was saved</string>
+    <string name="editor_update_ingredient_failed">Ingredient Update error</string>
+    <string name="editor_update_ingredient_successful">Ingredient Update successful</string>
 
+    <string name="Alert_EditText_Fields_Cannot_Be_Empty">Blank entries not allowed. All info must
+        be provided.</string>
+    <string name="Alert_EditText_OK">OK</string>
     <string name="unknown_breed">unknown</string>
 
-    <string name="empty_view_subtitle_text">empty subtitle</string>
-    <string name="empty_view_title_text">empty title</string>
+    <string name="empty_view_subtitle_text">Click the ADD STUFF button to enter an
+        ingredient</string>
+    <string name="empty_view_title_text">The table is empty.</string>
+
+    <string name="unsaved_changes_dialog_msg">Unsaved changes</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep editing</string>
+
+    <string name="delete_dialog_msg">Really delete?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="editor_delete_ingredient_failed">Delete failed</string>
+    <string name="editor_delete_ingredient_success">Delete succeeded</string>
 
 </resources>

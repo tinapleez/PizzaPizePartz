@@ -92,9 +92,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
                 // Form the content URI that represents the specific pet that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
-                // {@link PizzaEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.freecbdhomebiz
-                // .pizzapizepartz/pizzas/2"
+                // {@link PizzaEntry#CONTENT_URI}. For example, the URI would be
+                // "content://com.freecbdhomebiz.pizzapizepartz/pizzas/2"
                 // if the ingredient with ID 2 was clicked on.
                 Uri currentPizzaUri = ContentUris.withAppendedId(PizzaEntry.CONTENT_URI, id);
 
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         values.put(PizzaEntry.COLUMN_INGREDIENT_PRICE, 5);
         values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, 1);
         values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, "Supplier");
-        values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, 555 - 555 - 5555);
+        values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, 5555555);
 
         // Insert a new row for Anchovies into the provider using the ContentResolver.
         // Use the {@link PizzaEntry#CONTENT_URI} to indicate that we want to insert
@@ -172,7 +171,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         String[] projection = {
                 PizzaEntry._ID,
                 PizzaEntry.COLUMN_INGREDIENT_NAME,
-                PizzaEntry.COLUMN_INGREDIENT_PRICE};
+                PizzaEntry.COLUMN_INGREDIENT_PRICE,
+                PizzaEntry.COLUMN_INGREDIENT_QUANTITY,
+                PizzaEntry.COLUMN_INGREDIENT_SUPPLIER,
+                PizzaEntry.COLUMN_SUPPLIER_PHONE};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context

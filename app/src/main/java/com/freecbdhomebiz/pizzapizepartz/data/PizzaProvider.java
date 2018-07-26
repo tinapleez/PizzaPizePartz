@@ -90,7 +90,7 @@ public class PizzaProvider extends ContentProvider {
             case PIZZAS:
                 // For the PIZZAS code, query the pizzapartz table directly with the given
                 // projection, selection, selection arguments, and sort order. The cursor
-                // could contain multiple rows of the pets table.
+                // could contain multiple rows of the pizzapartz table.
                 cursor = database.query(PizzaEntry.TABLE_NAME,
                                         projection,
                                         selection,
