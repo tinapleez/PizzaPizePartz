@@ -14,7 +14,6 @@ package com.freecbdhomebiz.pizzapizepartz;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,8 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
 
 /**
  * {@link PizzaCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of pet data as its data source. This adapter knows
- * how to create list items for each row of pet data in the {@link Cursor}.
+ * that uses a {@link Cursor} of ingredient data as its data source. This adapter knows
+ * how to create list items for each row of ingredient data in the {@link Cursor}.
  */
 public class PizzaCursorAdapter extends CursorAdapter {
 
@@ -56,9 +55,9 @@ public class PizzaCursorAdapter extends CursorAdapter {
     }
 
     /**
-     * This method binds the pet data (in the current row pointed to by cursor) to the given
-     * list item layout. For example, the name for the current pet can be set on the name TextView
-     * in the list item layout.
+     * This method binds the ingredient data (in the current row pointed to by cursor) to the given
+     * list item layout. For example, the name for the current ingredient can be set on the name
+     * TextView in the list item layout.
      *
      * @param view    Existing view, returned earlier by newView() method
      * @param context app context
@@ -68,26 +67,28 @@ public class PizzaCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = view.findViewById(R.id.name);
-        TextView summaryTextView = view.findViewById(R.id.summary);
+        TextView nameTextView = view.findViewById(R.id.the_name);
+        TextView priceTextView = view.findViewById(R.id.the_price);
+        TextView quantityTextView = view.findViewById(R.id.the_quantity);
 
-        // Find the columns of pet attributes that we're interested in
+        // Find the columns of ingredient attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_PRICE);
+        int priceColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_PRICE);
+        int quantityColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_QUANTITY);
 
-        // Read the pet attributes from the Cursor for the current pet
-        String petName = cursor.getString(nameColumnIndex);
-        String petBreed = cursor.getString(breedColumnIndex);
+        // Read the pet attributes from the Cursor for the current ingredient
+        String pName = cursor.getString(nameColumnIndex);
+        String pPrice = cursor.getString(priceColumnIndex);
+        String pQuantity = cursor.getString(quantityColumnIndex);
 
-        // If the pet breed is empty string or null, then use some default text
-        // that says "Unknown breed", so the TextView isn't blank.
-        if (TextUtils.isEmpty(petBreed)) {
-            petBreed = context.getString(R.string.unknown_breed);
-        }
+        // Create the message to be displayed
+        String priceDisplay = ("Price:  $" + pPrice);
+        String quantityDisplay = ("Quantity:  " + pQuantity);
 
-        // Update the TextViews with the attributes for the current pet
-        nameTextView.setText(petName);
-        summaryTextView.setText(petBreed);
+        // Update the TextViews with the attributes for the current ingredient
+        nameTextView.setText(pName);
+        priceTextView.setText(priceDisplay);
+        quantityTextView.setText(quantityDisplay);
     }
 }
 

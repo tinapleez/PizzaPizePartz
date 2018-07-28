@@ -76,9 +76,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         // Setup an Adapter to create a list item for each row of ingredient data in the Cursor.
         // There is no ingredient data yet (until the loader finishes) so pass in null for the
         // Cursor.
-        mCursorAdapter = new
-
-                PizzaCursorAdapter(this, null);
+        mCursorAdapter = new PizzaCursorAdapter(this, null);
         pizzaListView.setAdapter(mCursorAdapter);
 
         // Setup the item click listener
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
                 // Create new intent to go to {@link EditorActivity}
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
 
-                // Form the content URI that represents the specific pet that was clicked on,
+                // Form the content URI that represents the specific ingredient that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
                 // {@link PizzaEntry#CONTENT_URI}. For example, the URI would be
                 // "content://com.freecbdhomebiz.pizzapizepartz/pizzas/2"

@@ -47,8 +47,8 @@
     <string name="unknown_breed">unknown</string>
 
     <string name="empty_view_subtitle_text">Click the ADD STUFF button to enter an
-        ingredient</string>
-    <string name="empty_view_title_text">The table is empty.</string>
+        ingredient, the price, quantity, supplier, and supplier\'s phone number.</string>
+    <string name="empty_view_title_text">The database is empty.</string>
 
     <string name="unsaved_changes_dialog_msg">Unsaved changes</string>
     <string name="discard">Discard</string>
@@ -60,5 +60,6 @@
 
     <string name="editor_delete_ingredient_failed">Delete failed</string>
     <string name="editor_delete_ingredient_success">Delete succeeded</string>
+    <string name="text_list_item_sale">SALE</string>
 
 </resources>
