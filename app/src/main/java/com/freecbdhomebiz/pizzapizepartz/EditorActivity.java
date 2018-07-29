@@ -137,6 +137,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mNameEditText = findViewById(R.id.edit_name);
         mPriceEditText = findViewById(R.id.edit_price);
         mQuantityEditText = findViewById(R.id.edit_quantity);
+        mQuantityEditText.setText("0");
         mSupplierEditText = findViewById(R.id.edit_supplier);
         mPhoneEditText = findViewById(R.id.edit_phone);
         mIncreaseQuantity = findViewById(R.id.button_incr_quantity);
@@ -150,6 +151,30 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mSupplierEditText.setOnTouchListener(mTouchListener);
         mPhoneEditText.setOnTouchListener(mTouchListener);
+
+        mIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                int i = Integer.parseInt(mQuantityEditText.getText().toString());
+                mQuantityEditText.setText(String.valueOf(i + 1));
+                mPizzaHasChanged = true;
+
+            }
+
+        });
+
+        mDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                int i = Integer.parseInt(mQuantityEditText.getText().toString());
+                if (i > 0) {
+                    mQuantityEditText.setText(String.valueOf(i - 1));
+                    mPizzaHasChanged = true;
+
+                } else {
+                }
+            }
+        });
     }
 
     /**
