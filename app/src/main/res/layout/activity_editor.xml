@@ -150,4 +150,19 @@
             style="@style/EditTextStyle" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_supplier_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call the Supplier"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/button_delete_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete this record"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center" />
+
 </LinearLayout>

@@ -82,8 +82,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
      */
     private EditText mPhoneEditText;
 
-    private Button mDecreaseQuantity;
-    private Button mIncreaseQuantity;
 
     /**
      * Boolean flag that keeps track of whether the ingredient has been edited (true) or not (false)
@@ -140,8 +138,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mQuantityEditText.setText("0");
         mSupplierEditText = findViewById(R.id.edit_supplier);
         mPhoneEditText = findViewById(R.id.edit_phone);
-        mIncreaseQuantity = findViewById(R.id.button_incr_quantity);
-        mDecreaseQuantity = findViewById(R.id.button_decr_quantity);
+        Button mIncreaseQuantity = findViewById(R.id.button_incr_quantity);
+        Button mDecreaseQuantity = findViewById(R.id.button_decr_quantity);
+        Button mCallSupplier = findViewById(R.id.button_supplier_phone);
+        Button mDeleteRecord = findViewById(R.id.button_delete_record);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -155,26 +155,53 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                String test = mQuantityEditText.getText().toString();
+                if (TextUtils.isEmpty(test)) {
+                    mQuantityEditText.setText("0");
+                }
                 int i = Integer.parseInt(mQuantityEditText.getText().toString());
                 mQuantityEditText.setText(String.valueOf(i + 1));
                 mPizzaHasChanged = true;
-
             }
-
         });
 
         mDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                String test = mQuantityEditText.getText().toString();
+                if (TextUtils.isEmpty(test)) {
+                    mQuantityEditText.setText("0");
+                }
                 int i = Integer.parseInt(mQuantityEditText.getText().toString());
                 if (i > 0) {
                     mQuantityEditText.setText(String.valueOf(i - 1));
                     mPizzaHasChanged = true;
-
                 } else {
                 }
             }
         });
+
+        mCallSupplier.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                String call = mPhoneEditText.getText().toString();
+                if (!TextUtils.isEmpty(call)) {
+                    Uri u = Uri.parse("tel:" + call);
+                    Intent icall = new Intent(Intent.ACTION_VIEW, u);
+                    startActivity(icall);
+                } else {
+                }
+            }
+        });
+
+        mDeleteRecord.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                showDeleteConfirmationDialog();
+            }
+        });
+
     }
 
     /**
