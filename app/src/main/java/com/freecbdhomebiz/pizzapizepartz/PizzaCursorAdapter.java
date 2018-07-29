@@ -17,6 +17,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -29,14 +30,17 @@ import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
  */
 public class PizzaCursorAdapter extends CursorAdapter {
 
+    private final MainActivity mainact;
+
     /**
      * Constructs a new {@link PizzaCursorAdapter}.
      *
      * @param context The context
      * @param c       The cursor from which to get the data.
      */
-    public PizzaCursorAdapter(Context context, Cursor c) {
+    public PizzaCursorAdapter(MainActivity context, Cursor c) {
         super(context, c, 0 /* flags */);
+        this.mainact = context;
     }
 
     /**
@@ -70,16 +74,18 @@ public class PizzaCursorAdapter extends CursorAdapter {
         TextView nameTextView = view.findViewById(R.id.the_name);
         TextView priceTextView = view.findViewById(R.id.the_price);
         TextView quantityTextView = view.findViewById(R.id.the_quantity);
+        Button salebutton = view.findViewById(R.id.sale);
+
 
         // Find the columns of ingredient attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_QUANTITY);
 
-        // Read the pet attributes from the Cursor for the current ingredient
+        // Read the ingredient attributes from the Cursor for the current ingredient
         String pName = cursor.getString(nameColumnIndex);
-        String pPrice = cursor.getString(priceColumnIndex);
-        String pQuantity = cursor.getString(quantityColumnIndex);
+        int pPrice = cursor.getInt(priceColumnIndex);
+        final int pQuantity = cursor.getInt(quantityColumnIndex);
 
         // Create the message to be displayed
         String priceDisplay = ("Price:  $" + pPrice);
@@ -89,6 +95,15 @@ public class PizzaCursorAdapter extends CursorAdapter {
         nameTextView.setText(pName);
         priceTextView.setText(priceDisplay);
         quantityTextView.setText(quantityDisplay);
+
+        final long id = cursor.getLong(cursor.getColumnIndex(PizzaEntry._ID));
+
+        salebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainact.onClickSale(id, pQuantity);
+            }
+        });
     }
 }
 

@@ -26,12 +26,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.freecbdhomebiz.pizzapizepartz.data.PizzaContract.PizzaEntry;
 
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
      */
     PizzaCursorAdapter mCursorAdapter;
 
+    TextView quantityTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
                 startActivity(intent);
             }
         });
+
+        quantityTextView = findViewById(R.id.the_quantity);
 
 
         // Find the ListView which will be populated with the pizza ingredient data
@@ -107,7 +114,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         getLoaderManager().
 
                 initLoader(PIZZA_LOADER, null, this);
+    }
 
+    public void onClickSale(long id, int quantity) {
+        Uri currentPizzaUri = ContentUris.withAppendedId(PizzaEntry.CONTENT_URI, id);
+        Log.v("MainActivity", "Uri: " + currentPizzaUri);
+        if (quantity > 0) {
+            quantity--;
+            ContentValues values = new ContentValues();
+            values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, quantity);
+            int rowsAffected = getContentResolver().update(currentPizzaUri, values, null, null);
+        } else {
+            Toast toast = Toast.makeText(this, "Quantity can't be negative", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
     }
 
     /**
@@ -120,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         ContentValues values = new ContentValues();
         values.put(PizzaEntry.COLUMN_INGREDIENT_NAME, "Anchovies");
         values.put(PizzaEntry.COLUMN_INGREDIENT_PRICE, 5);
-        values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, 1);
+        values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, 7);
         values.put(PizzaEntry.COLUMN_INGREDIENT_SUPPLIER, "Supplier");
         values.put(PizzaEntry.COLUMN_SUPPLIER_PHONE, 5555555);
 

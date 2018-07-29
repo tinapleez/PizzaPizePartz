@@ -78,12 +78,28 @@
             style="@style/TextViewStyle" />
 
         <!-- Quantity -->
+        <Button
+            android:id="@+id/button_incr_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:padding="2dp"
+            android:layout_marginRight="4dp" />
+
         <EditText
             android:id="@+id/edit_quantity"
             android:maxLength="3"
             android:hint="@string/edittext_quantity_hint"
             android:inputType="number"
             style="@style/EditTextStyle" />
+
+        <Button
+            android:id="@+id/button_decr_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:padding="2dp"
+            android:layout_marginLeft="4dp" />
     </LinearLayout>
 
     <!-- Measurement category -->

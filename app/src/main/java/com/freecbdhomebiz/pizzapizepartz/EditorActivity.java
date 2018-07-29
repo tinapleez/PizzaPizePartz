@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +81,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
      * EditText field to enter the ingredient quantity
      */
     private EditText mPhoneEditText;
+
+    private Button mDecreaseQuantity;
+    private Button mIncreaseQuantity;
 
     /**
      * Boolean flag that keeps track of whether the ingredient has been edited (true) or not (false)
@@ -135,6 +139,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mQuantityEditText = findViewById(R.id.edit_quantity);
         mSupplierEditText = findViewById(R.id.edit_supplier);
         mPhoneEditText = findViewById(R.id.edit_phone);
+        mIncreaseQuantity = findViewById(R.id.button_incr_quantity);
+        mDecreaseQuantity = findViewById(R.id.button_decr_quantity);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
