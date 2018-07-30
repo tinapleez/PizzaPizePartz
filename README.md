@@ -16,4 +16,5 @@ Inventory Android App - Final Project for Udacity Android Basics Nanodegree
     
     https://www.gnu.org/licenses/gpl-3.0.en.html
     
-    
+    .
+    ![Animated GIF of Pizza Pize Partz App](https://user-images.githubusercontent.com/35104977/43400504-e025d692-93db-11e8-9b6e-582713a83f9b.gif "Animated GIF of Pizzx Pize Partz App")
