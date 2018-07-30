@@ -77,7 +77,7 @@ public class PizzaCursorAdapter extends CursorAdapter {
         Button salebutton = view.findViewById(R.id.sale);
 
 
-        // Find the columns of ingredient attributes that we're interested in
+        // Find the columns of ingredient attributes to display on screen
         int nameColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_NAME);
         int priceColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(PizzaEntry.COLUMN_INGREDIENT_QUANTITY);
@@ -98,6 +98,8 @@ public class PizzaCursorAdapter extends CursorAdapter {
 
         final long id = cursor.getLong(cursor.getColumnIndex(PizzaEntry._ID));
 
+        // Sale button for the item to decrease quantity by 1. Calls MainActivity method
+        // and sends it the current id and the quantity for the ingredient
         salebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

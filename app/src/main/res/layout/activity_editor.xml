@@ -36,6 +36,7 @@
             android:text="@string/text_editor_name"
             style="@style/TextViewStyle" />
 
+        <!-- Name of ingredient -->
         <EditText
             android:id="@+id/edit_name"
             android:maxLength="20"
@@ -57,6 +58,7 @@
             android:text="@string/text_editor_price"
             style="@style/TextViewStyle" />
 
+        <!-- Price -->
         <EditText
             android:id="@+id/edit_price"
             android:maxLength="3"
@@ -81,14 +83,14 @@
             android:textColor="@color/colorAccent"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-        <!-- Quantity -->
         <Button
             android:id="@+id/button_incr_quantity"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="+" />
+            android:text="@string/button_incr" />
 
+        <!-- Quantity -->
         <EditText
             android:id="@+id/edit_quantity"
             android:layout_width="0dp"
@@ -104,11 +106,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:layout_marginLeft="2dp" />
+            android:text="@string/button_decr"
+            android:layout_marginLeft="@dimen/button_decr_leftmargin" />
     </LinearLayout>
 
-    <!-- Measurement category -->
     <LinearLayout
         android:id="@+id/supplier"
         android:layout_width="match_parent"
@@ -121,7 +122,7 @@
             android:text="@string/text_editor_supplier"
             style="@style/TextViewStyle" />
 
-        <!-- Quantity -->
+        <!-- Supplier -->
         <EditText
             android:id="@+id/edit_supplier"
             android:maxLength="30"
@@ -142,6 +143,7 @@
             android:text="@string/text_editor_phone"
             style="@style/TextViewStyle" />
 
+        <!-- Supplier phone -->
         <EditText
             android:id="@+id/edit_phone"
             android:maxLength="7"
@@ -154,15 +156,16 @@
         android:id="@+id/button_supplier_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call the Supplier"
+        android:text="@string/button_call_the_supplier"
         android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/button_delete_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete this record"
+        android:text="@string/button_delete_this_record"
         android:layout_marginTop="24dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:backgroundTint="@color/red" />
 
 </LinearLayout>

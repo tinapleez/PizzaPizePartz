@@ -13,4 +13,6 @@
     <dimen name="text_entry_form_label">8dp</dimen>
     <dimen name="linear_layout_margin_bottom">4dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="button_decr_leftmargin">2dp</dimen>
+    <dimen name="text_marginbottom">4dp</dimen>
 </resources>

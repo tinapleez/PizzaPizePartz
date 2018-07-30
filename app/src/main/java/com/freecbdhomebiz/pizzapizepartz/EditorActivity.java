@@ -152,6 +152,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mSupplierEditText.setOnTouchListener(mTouchListener);
         mPhoneEditText.setOnTouchListener(mTouchListener);
 
+        // Plus button click listener to increase quantity by 1
         mIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -164,7 +165,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
                 mPizzaHasChanged = true;
             }
         });
-
+        // Minus button click listener to decrease quantity by 1
         mDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -177,10 +178,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
                     mQuantityEditText.setText(String.valueOf(i - 1));
                     mPizzaHasChanged = true;
                 } else {
+                    // Do nothing because we don't want negative quantity
                 }
             }
         });
-
+        // Call the Supplier button click listener
+        // Intent sends number and opens phone dialer
         mCallSupplier.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -190,14 +193,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
                     Intent icall = new Intent(Intent.ACTION_VIEW, u);
                     startActivity(icall);
                 } else {
+                    // Do nothing because the phone number is null
                 }
             }
         });
-
+        // Delete This Record button click listener
         mDeleteRecord.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
                 showDeleteConfirmationDialog();
             }
         });
@@ -473,36 +476,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager
         mQuantityEditText.setText("");
         mSupplierEditText.setText("");
         mPhoneEditText.setText("");
-    }
-
-    /**
-     * Prompt the user to confirm that they want to delete this ingredient.
-     */
-    private void showEmptyFieldsDialog() {
-        // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the positive and negative buttons on the dialog.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.Alert_EditText_Fields_Cannot_Be_Empty);
-        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete the ingredient.
-                deleteIngredient();
-            }
-        });
-        builder.setNegativeButton(R.string.Alert_EditText_OK, new DialogInterface.OnClickListener
-                () {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the ingredient.
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-            }
-        });
-
-        // Create and show the AlertDialog
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     /**

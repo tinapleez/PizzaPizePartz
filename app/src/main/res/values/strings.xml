@@ -17,7 +17,6 @@
     <string name="editor_activity_title_new_ingredient">Add ingredient</string>
     <string name="editor_activity_title_edit_ingredient">Edit ingredient</string>
     <string name="editor_activity_update">Update the ingredient here</string>
-
     <string name="mainactivity_info_1">The pizzapartz table contains \ </string>
     <string name="mainactivity_info2">\ rows of ingredients. \n\n</string>
     <string name="Anchovies">Anchovies</string>
@@ -40,26 +39,27 @@
     <string name="Toast_EditorActivity_Save_Success">Ingredient was saved</string>
     <string name="editor_update_ingredient_failed">Ingredient Update error</string>
     <string name="editor_update_ingredient_successful">Ingredient Update successful</string>
-
     <string name="Alert_EditText_Fields_Cannot_Be_Empty">Blank entries not allowed. All info must
         be provided.</string>
     <string name="Alert_EditText_OK">OK</string>
     <string name="unknown_breed">unknown</string>
-
     <string name="empty_view_subtitle_text">Click the ADD STUFF button to enter an
         ingredient, the price, quantity, supplier, and supplier\'s phone number.</string>
     <string name="empty_view_title_text">The database is empty.</string>
-
     <string name="unsaved_changes_dialog_msg">Unsaved changes</string>
     <string name="discard">Discard</string>
     <string name="keep_editing">Keep editing</string>
-
     <string name="delete_dialog_msg">Really delete?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
-
     <string name="editor_delete_ingredient_failed">Delete failed</string>
     <string name="editor_delete_ingredient_success">Delete succeeded</string>
     <string name="text_list_item_sale">SALE</string>
+    <string name="mainactivity_toast_quantity">Quantity can\'t be negative</string>
+    <string name="button_incr">+</string>
+    <string name="button_decr">-</string>
+    <string name="button_call_the_supplier">Call the Supplier</string>
+    <string name="button_delete_this_record">Delete this record</string>
+    <string name="mainmenu_delete_all_ingredients">Delete all ingredients</string>
 
 </resources>

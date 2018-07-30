@@ -14,5 +14,6 @@
     <color name="actionbar_text">#060012</color>
     <color name="background">#FEDEC2</color>
     <color name="background2">#FEE8D5</color>
+    <color name="red">#ff0000</color>
 
 </resources>

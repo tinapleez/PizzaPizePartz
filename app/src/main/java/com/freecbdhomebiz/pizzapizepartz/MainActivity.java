@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
     TextView quantityTextView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         });
 
         quantityTextView = findViewById(R.id.the_quantity);
-
 
         // Find the ListView which will be populated with the pizza ingredient data
         ListView pizzaListView = findViewById(R.id.list);
@@ -118,6 +116,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
                 initLoader(PIZZA_LOADER, null, this);
     }
 
+    /**
+     * Sale button decreases the quantity by 1
+     * Called from PizzaCursorAdapter
+     *
+     * @param id       is the current ingredient id
+     * @param quantity is the current quantity
+     */
     public void onClickSale(long id, int quantity) {
         Uri currentPizzaUri = ContentUris.withAppendedId(PizzaEntry.CONTENT_URI, id);
         Log.v("MainActivity", "Uri: " + currentPizzaUri);
@@ -127,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
             values.put(PizzaEntry.COLUMN_INGREDIENT_QUANTITY, quantity);
             int rowsAffected = getContentResolver().update(currentPizzaUri, values, null, null);
         } else {
-            Toast toast = Toast.makeText(this, "Quantity can't be negative", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, R.string.mainactivity_toast_quantity, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
     /**
      * Helper method to insert hardcoded ingredient data into the database. For debugging purposes
-     * only.
+     * and for fun.
      */
     private void insertPizza() {
         // Create a ContentValues object where column names are the keys,
@@ -187,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
